@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeno — Features</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .filters {
+    margin: 0 0 32px;
+    display: flex; gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .filter-chip {
+    padding: 9px 18px;
+    font-family: inherit;
+    font-size: 13px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--fg-muted);
+    background: rgba(15, 22, 36, 0.45);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-chip:hover { color: var(--fg); border-color: var(--border-strong); }
+  .filter-chip.active {
+    border-color: rgba(91,155,255,0.5);
+    color: #fff;
+    background: rgba(91, 155, 255, 0.18);
+    box-shadow: 0 0 20px rgba(91, 155, 255, 0.2);
+  }
+
+  .feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .feat-item {
+    padding: 22px;
+    border-radius: 14px;
+    transition: all 0.3s;
+    cursor: pointer;
+    animation: itemIn 0.5s ease-out backwards;
+  }
+  @keyframes itemIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .feat-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(91, 155, 255, 0.3);
+    background: rgba(20, 28, 42, 0.6);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 30px rgba(91,155,255,0.08);
+  }
+  .feat-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 10px; gap: 12px;
+  }
+  .feat-name { font-size: 16px; font-weight: 600; }
+  .feat-desc {
+    font-size: 13.5px; line-height: 1.55;
+    color: var(--fg-muted);
+  }
+
+  @media (max-width: 880px) { .feat-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="shared.jsx"></script>
+
+<script type="text/babel">
+const FEATURES = [
+  // Combat
+  { cat: "Combat", name: "Aim Assist", desc: "Smooth aim correction for better combat tracking.", flag: "beta" },
+  { cat: "Combat", name: "Anchor Macro", desc: "Automates respawn anchor combat mechanics.", flag: "stable" },
+  { cat: "Combat", name: "Breach Swap", desc: "Fast weapon swap.", flag: "stable" },
+  { cat: "Combat", name: "Crystal Macro", desc: "Automated end crystal placement and detonation.", flag: "stable" },
+  { cat: "Combat", name: "Double Anchor Macro", desc: "Advanced double anchor chaining system.", flag: "stable" },
+  { cat: "Combat", name: "Shield Breaker", desc: "Auto disable enemy shields.", flag: "stable" },
+  { cat: "Combat", name: "Sword Place Obsidian", desc: "Places obsidian instantly during sword combat.", flag: "stable" },
+
+  // Utility (misc)
+  { cat: "Utility", name: "Anti Trap", desc: "Prevents getting trapped by armor-stands/minecarts.", flag: "stable" },
+  { cat: "Utility", name: "Auto Double Hand", desc: "Automatically manages offhand totems.", flag: "stable" },
+  { cat: "Utility", name: "Auto Inv Totem", desc: "Moves totems into inventory/offhand automatically.", flag: "stable" },
+  { cat: "Utility", name: "Hover Totem", desc: "Keeps totem ready under critical conditions.", flag: "stable" },
+
+  // Movement
+  { cat: "Movement", name: "Auto Pearl Chain", desc: "Chains ender pearl throws for fast travel.", flag: "stable" },
+  { cat: "Movement", name: "Key Pearl", desc: "Throws pearls with a single keybind.", flag: "stable" },
+  { cat: "Movement", name: "RTPer", desc: "Automated random teleport execution.", flag: "stable" },
+  { cat: "Movement", name: "Wind Pearl Macro", desc: "Pearl and windcharge combo with a key.", flag: "beta" },
+
+  // Render
+  { cat: "Render", name: "Chunk Finder", desc: "Detects sus chunks.", flag: "stable" },
+  { cat: "Render", name: "Drowned Trident ESP", desc: "Highlights drowned mobs with tridents.", flag: "stable" },
+  { cat: "Render", name: "HUD", desc: "Displays client info and active modules.", flag: "beta" },
+  { cat: "Render", name: "Kelp ESP", desc: "Highlights kelp chunks.", flag: "stable" },
+  { cat: "Render", name: "Llama ESP", desc: "Highlights llamas in the world.", flag: "stable" },
+  { cat: "Render", name: "Rotated Deepslate ESP", desc: "Finds rotated deepslate blocks.", flag: "stable" },
+  { cat: "Render", name: "Villager ESP", desc: "Highlights villagers through walls.", flag: "stable" },
+
+  // World
+  { cat: "World", name: "Coord Snapper", desc: "Snaps and logs silent coordinates.", flag: "stable" },
+  { cat: "World", name: "Freecam", desc: "Move camera freely without moving player.", flag: "stable" },
+  { cat: "World", name: "No Block Interact", desc: "Prevents accidental block interactions.", flag: "stable" },
+  { cat: "World", name: "Rain Notifier", desc: "Alerts when weather changes.", flag: "stable" },
+  { cat: "World", name: "TPA All Macro", desc: "Sends teleport requests to all players.", flag: "stable" },
+  { cat: "World", name: "TPA Macro", desc: "Automates teleport requests.", flag: "stable" },
+  { cat: "World", name: "Tunnel Finder", desc: "Detects underground stashes.", flag: "beta" },
+];
+
+const CATEGORIES = ["All", "Combat", "Movement", "World", "Render", "Utility"];
+
+const Features = () => {
+  const [cat, setCat] = React.useState("All");
+  const filtered = cat === "All" ? FEATURES : FEATURES.filter(f => f.cat === cat);
+  return (
+    <main>
+      <div className="page-head container">
+        <h1>Features.</h1>
+        <p>Modular, fast, open. Filter by category.</p>
+      </div>
+      <section className="container" style={{ paddingBottom: 80 }}>
+        <div className="filters">
+          {CATEGORIES.map(c => (
+            <button key={c} className={"filter-chip" + (cat === c ? " active" : "")} onClick={() => setCat(c)}>{c}</button>
+          ))}
+        </div>
+        <div className="feat-grid">
+          {filtered.map((f, i) => (
+            <div key={f.name} className="feat-item glass" style={{ animationDelay: `${i * 0.03}s` }}>
+              <div className="feat-head">
+                <div className="feat-name">{f.name}</div>
+                <span className={"chip " + (f.flag === "beta" ? "chip-accent" : "chip-ok")}>
+                  <span className="chip-dot"></span>{f.flag}
+                </span>
+              </div>
+              <div className="feat-desc">{f.desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+};
+
+const App = () => (<><Nav active="features" /><Features /><Footer /></>);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

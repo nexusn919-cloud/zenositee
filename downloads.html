@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zeno — Download</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .dl-card {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    animation: cardIn 0.8s ease-out;
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .dl-card::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, transparent 0%, rgba(91,155,255,0.15) 30%, transparent 50%);
+    animation: rotateBg 8s linear infinite;
+    z-index: 0;
+  }
+  @keyframes rotateBg { to { transform: rotate(360deg); } }
+  .dl-card > * { position: relative; z-index: 1; }
+
+  .dl-logo {
+    width: 88px; height: 88px;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 0 20px rgba(91,155,255,0.5));
+    animation: heroFloat 6s ease-in-out infinite;
+  }
+  @keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .dl-card h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+  }
+  .dl-version {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--fg-muted);
+    margin-bottom: 28px;
+  }
+  .dl-version .accent { color: var(--accent); }
+  .dl-btn {
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .dl-meta {
+    display: flex; justify-content: center; gap: 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg-dim);
+    flex-wrap: wrap;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .dl-meta span { display: inline-flex; align-items: center; gap: 5px; }
+
+  .dl-source {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 18px;
+    padding: 8px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    border: 1px solid rgba(91, 155, 255, 0.25);
+    border-radius: 100px;
+    background: rgba(91, 155, 255, 0.06);
+    transition: all 0.2s;
+  }
+  .dl-source:hover {
+    color: var(--fg);
+    border-color: var(--accent);
+    background: rgba(91, 155, 255, 0.14);
+    gap: 12px;
+  }
+  .dl-source svg { transition: transform 0.2s; }
+  .dl-source:hover svg { transform: translateX(3px); }
+
+  .reqs {
+    margin: 48px auto 0;
+    max-width: 540px;
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .reqs h3 {
+    font-size: 13px;
+    font-family: var(--mono);
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .req-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .req-row:last-child { border-bottom: none; }
+  .req-row span:last-child { color: var(--fg-muted); font-family: var(--mono); font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="shared.jsx"></script>
+
+<script type="text/babel">
+const Downloads = () => (
+  <main>
+    <div className="page-head container">
+      <h1>Download Zeno.</h1>
+      <p>One file. Drop it in your mods folder.</p>
+    </div>
+    <section className="container" style={{ paddingBottom: 80 }}>
+      <div className="dl-card glass">
+        <img src="assets/zeno-logo.png" className="dl-logo" alt="Zeno" />
+        <h1>Zeno v1.2</h1>
+        <div className="dl-version">For Minecraft <span className="accent">1.21.11</span> · Fabric</div>
+        <a href="#" className="btn btn-primary dl-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>
+          Download .jar 
+        </a>
+        <div className="dl-meta">
+          <span><span className="chip-dot" style={{background:"var(--ok)"}}></span>Released May 6</span>
+          <span>SHA-256 verified</span>
+          <span>MIT licensed</span>
+        </div>
+        <a href="https://github.com" target="_blank" rel="noopener" className="dl-source">
+          View Source Code
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div className="reqs glass">
+        <h3>Requirements</h3>
+        <div className="req-row"><span>Minecraft</span><span>1.21.11</span></div>
+        <div className="req-row"><span>Fabric Loader</span><span>0.16+</span></div>
+        <div className="req-row"><span>Java</span><span>21+</span></div>
+      </div>
+    </section>
+  </main>
+);
+
+const App = () => (<><Nav active="downloads" /><Downloads /><Footer /></>);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
