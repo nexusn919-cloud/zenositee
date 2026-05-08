@@ -6,7 +6,7 @@ const ZenoLogo = ({ size = 26 }) => (
 
 const Nav = ({ active }) => {
   const links = [
-    { href: "index.html", label: "Home", key: "home" },
+    { href: "home.html", label: "Home", key: "home" },
     { href: "features.html", label: "Features", key: "features" },
     { href: "downloads.html", label: "Download", key: "downloads" },
     { href: "credits.html", label: "Credits", key: "credits" },
@@ -14,7 +14,7 @@ const Nav = ({ active }) => {
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <a href="index.html" className="brand">
+        <a href="home.html" className="brand">
           <span className="brand-mark"><ZenoLogo /></span>
           <span>Zeno</span>
         </a>
@@ -39,7 +39,16 @@ const Nav = ({ active }) => {
   );
 };
 
-
+const Footer = () => (
+  <footer className="footer">
+    <div className="container">
+      <div className="footer-inner">
+        <span>© 2026 Zeno · Minecraft 1.21.11</span>
+        <span>Not affiliated with Mojang or Microsoft</span>
+      </div>
+    </div>
+  </footer>
+);
 
 // Particle network background — connected dots that react to mouse.
 // Reads window.__zenoTweaks for { density, energy, dotColor, lineColor, mouseColor }
