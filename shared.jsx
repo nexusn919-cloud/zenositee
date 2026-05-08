@@ -10,11 +10,12 @@ const Nav = ({ active }) => {
     { href: "/features", label: "Features", key: "features" },
     { href: "/downloads", label: "Download", key: "downloads" },
     { href: "/credits", label: "Credits", key: "credits" },
+
   ];
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <a href="home.html" className="brand">
+        <a href="index.html" className="brand">
           <span className="brand-mark"><ZenoLogo /></span>
           <span>Zeno</span>
         </a>
