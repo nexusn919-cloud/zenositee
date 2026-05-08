@@ -4,129 +4,69 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zeno — Credits</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="shared.css">
-
 <style>
-  .section {
-    margin-bottom: 40px;
-  }
-
+  .section { margin-bottom: 40px; }
   .section-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: var(--fg);
+    font-size: 18px; font-weight: 600;
+    margin-bottom: 16px; color: var(--fg);
   }
-
   .people-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
   }
-
   .person {
-    padding: 24px 16px;
-    text-align: center;
-    border-radius: 14px;
-    transition: all 0.3s;
+    padding: 24px 16px; text-align: center;
+    border-radius: 14px; transition: all 0.3s;
     animation: itemIn 0.6s ease-out backwards;
   }
-
-  @keyframes itemIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  @keyframes itemIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .person:hover {
     transform: translateY(-4px);
     background: rgba(20, 28, 42, 0.6);
     border-color: rgba(91, 155, 255, 0.3);
     box-shadow: 0 0 30px rgba(91,155,255,0.15);
   }
-
   .avatar {
-    width: 52px;
-    height: 52px;
-    margin: 0 auto 12px;
-    border-radius: 50%;
-    overflow: hidden;
+    width: 52px; height: 52px; margin: 0 auto 12px;
+    border-radius: 50%; overflow: hidden;
     border: 1px solid rgba(91,155,255,0.3);
     box-shadow: 0 0 12px rgba(91,155,255,0.15);
   }
-
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .person-name {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-
-  .person-role {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--fg-muted);
-  }
-
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .person-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .person-role { font-family: var(--mono); font-size: 11px; color: var(--fg-muted); }
   .thanks {
-    margin: 56px auto 0;
-    max-width: 540px;
-    padding: 24px 28px;
-    border-radius: 16px;
-    text-align: center;
+    margin: 56px auto 0; max-width: 540px;
+    padding: 24px 28px; border-radius: 16px; text-align: center;
   }
-
-  .thanks p {
-    color: var(--fg-muted);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  @media (max-width: 600px) {
-    .people-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
+  .thanks p { color: var(--fg-muted); font-size: 14px; line-height: 1.6; }
+  @media (max-width: 600px) { .people-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
-
 <body>
 <div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script type="text/babel" src="shared.jsx"></script>
 
 <script type="text/babel">
-
 const PEOPLE = [
-  // Developers
   { name: "thereal4dam", role: "Owner/Lead Dev", category: "Developer", avatar: "https://cdn.discordapp.com/avatars/1156155377038143528/dcfbfab24096803bc21d59673635bb4a.png" },
   { name: "poteto", role: "Hud/Utils Dev", category: "Developer", avatar: "https://cdn.discordapp.com/avatars/927262013825089586/0cd3131c736a59744f99734aff287950.png?size=1024" },
-  { name: "have any skill?", role: "Open a ticket on Nova Discord", category: "Developer", avatar: "https://images.template.net/495748/Simple-Question-Mark-Clipart-edit-online.png" },
-
-  // Staff
+  { name: "have any skill?", role: "Open a ticket on Zeno Discord", category: "Developer", avatar: "https://images.template.net/495748/Simple-Question-Mark-Clipart-edit-online.png" },
   { name: "notrofix_.", role: "Helper/Tester", category: "Staff", avatar: "https://cdn.discordapp.com/avatars/1359032265748910221/37542a2bf5bd6e96ce917ad91e7a526a.png" },
   { name: "therealjennyy", role: "Helper", category: "Staff", avatar: "https://cdn.discordapp.com/avatars/755119402982310169/8d741bd7036a9e197024ed3778773a79.png?size=1024" },
   { name: "orin", role: "QA", category: "Staff", avatar: "https://github.com/orin.png" },
-
-  // Contributors
   { name: "cinder", role: "Web", category: "Contributor", avatar: "https://github.com/cinder.png" },
   { name: "vex", role: "AntiCheat bypass", category: "Contributor", avatar: "https://github.com/vex.png" },
   { name: "parallax", role: "Performance", category: "Contributor", avatar: "https://github.com/parallax.png" },
 ];
-
 const categories = ["Developer", "Staff", "Contributor"];
 
 const Credits = () => (
@@ -135,21 +75,15 @@ const Credits = () => (
       <h1>Credits.</h1>
       <p>The team that keeps Zeno running.</p>
     </div>
-
     <section className="container" style={{ paddingBottom: 80 }}>
       {categories.map((cat) => (
         <div key={cat} className="section">
           <div className="section-title">{cat}</div>
-
           <div className="people-grid">
             {PEOPLE.filter(p => p.category === cat).map((p, i) => (
               <div key={p.name} className="person glass" style={{ animationDelay: `${i * 0.05}s` }}>
                 <div className="avatar">
-                  <img
-                    src={p.avatar}
-                    alt={p.name}
-                    onError={(e) => e.target.src = "https://via.placeholder.com/52"}
-                  />
+                  <img src={p.avatar} alt={p.name} onError={(e) => e.target.src = "https://via.placeholder.com/52"} />
                 </div>
                 <div className="person-name">{p.name}</div>
                 <div className="person-role">{p.role}</div>
@@ -158,7 +92,6 @@ const Credits = () => (
           </div>
         </div>
       ))}
-
       <div className="thanks glass">
         <p>Special thanks to all contributors who made Zeno possible.</p>
       </div>
@@ -166,16 +99,8 @@ const Credits = () => (
   </main>
 );
 
-const App = () => (
-  <>
-    <Nav active="credits" />
-    <Credits />
-    <Footer />
-  </>
-);
-
+const App = () => (<><ParticleBG /><Nav active="credits" /><Credits /><Footer /></>);
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-
 </script>
 </body>
 </html>

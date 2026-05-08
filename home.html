@@ -3,11 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Zeno — Minecraft 1.21.11 client</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="shared.css">
+
 <style>
   .hero {
     position: relative;
@@ -15,61 +20,103 @@
     text-align: center;
     overflow: hidden;
     min-height: 90vh;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
   .hero-logo-wrap {
     position: relative;
-    width: 240px; height: 240px;
+    width: 240px;
+    height: 240px;
     margin: 0 auto 40px;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     animation: heroFloat 8s ease-in-out infinite;
   }
+
   @keyframes heroFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-12px) rotate(-1deg); }
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+      transform: translateY(-12px) rotate(-1deg);
+    }
   }
+
   .hero-logo-wrap::before {
     content: "";
-    position: absolute; inset: -60px;
+    position: absolute;
+    inset: -60px;
     background: radial-gradient(circle, rgba(91, 155, 255, 0.4), transparent 60%);
     filter: blur(40px);
     animation: heroGlow 4s ease-in-out infinite;
     z-index: 0;
   }
+
   @keyframes heroGlow {
-    0%, 100% { opacity: 0.4; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.15); }
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.8;
+      transform: scale(1.15);
+    }
   }
+
   .hero-logo {
     position: relative;
     z-index: 1;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     filter: drop-shadow(0 0 40px rgba(91, 155, 255, 0.6));
   }
+
   .hero-orbit {
-    position: absolute; inset: -20px;
+    position: absolute;
+    inset: -20px;
     border: 1px solid rgba(91, 155, 255, 0.15);
     border-radius: 50%;
     animation: spin 30s linear infinite;
   }
+
   .hero-orbit::before {
-    content: ""; position: absolute;
-    top: -3px; left: 50%;
-    width: 6px; height: 6px;
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
     background: #fff;
     border-radius: 50%;
     box-shadow: 0 0 12px rgba(255,255,255,0.9);
   }
+
   .hero-orbit-2 {
     inset: -50px;
     border-style: dashed;
     opacity: 0.5;
     animation: spin 50s linear infinite reverse;
   }
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
   .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 6px 14px;
     border: 1px solid var(--border);
     border-radius: 100px;
@@ -81,12 +128,16 @@
     margin-bottom: 28px;
     animation: fadeUp 0.8s 0.1s ease-out backwards;
   }
-  .hero-eyebrow .chip-dot { background: var(--ok); }
+
+  .hero-eyebrow .chip-dot {
+    background: var(--ok);
+  }
 
   .hero h1 {
     margin-bottom: 22px;
     animation: fadeUp 0.9s 0.2s ease-out backwards;
   }
+
   .hero h1 .accent {
     background: linear-gradient(180deg, #b8d4ff 0%, #5b9bff 60%, #2563eb 100%);
     -webkit-background-clip: text;
@@ -94,6 +145,7 @@
     color: transparent;
     display: inline-block;
   }
+
   .hero p {
     color: var(--fg-muted);
     font-size: 18px;
@@ -102,58 +154,54 @@
     margin: 0 auto 36px;
     animation: fadeUp 1s 0.35s ease-out backwards;
   }
+
   .hero-cta {
-    display: flex; gap: 12px;
+    display: flex;
+    gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
     animation: fadeUp 1s 0.5s ease-out backwards;
   }
+
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 32px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--fg-dim);
-    opacity: 0.7;
-    animation: fadeIn 1.5s 1s ease-out backwards;
-  }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.7; } }
-  .scroll-hint-line {
-    width: 1px; height: 24px;
-    background: linear-gradient(180deg, var(--accent), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
-    50% { opacity: 1; transform: scaleY(1); }
-  }
-
-  /* Stats strip */
   .stats {
     margin: 0 28px;
     max-width: 1044px;
-    margin-left: auto; margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: 28px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
     position: relative;
   }
+
   .stat {
     text-align: center;
     padding: 8px 16px;
     border-right: 1px solid var(--border);
     transition: transform 0.3s;
   }
-  .stat:last-child { border-right: none; }
-  .stat:hover { transform: translateY(-3px); }
+
+  .stat:last-child {
+    border-right: none;
+  }
+
+  .stat:hover {
+    transform: translateY(-3px);
+  }
+
   .stat-num {
     font-size: 36px;
     font-weight: 700;
@@ -164,6 +212,7 @@
     background-clip: text;
     color: transparent;
   }
+
   .stat-label {
     margin-top: 8px;
     color: var(--fg-muted);
@@ -171,80 +220,146 @@
   }
 
   @media (max-width: 700px) {
-    .stats { grid-template-columns: 1fr; gap: 16px; }
-    .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 14px; }
-    .stat:last-child { border-bottom: none; }
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .stat {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 14px;
+    }
+
+    .stat:last-child {
+      border-bottom: none;
+    }
   }
 </style>
 </head>
+
 <body>
+
 <div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
 
+<script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="shared.jsx"></script>
 
 <script type="text/babel">
+
+const TWEAK_DEFAULTS = {
+  atmosphere: "aurora",
+  energy: 50,
+  density: 50
+};
+
+function ZenoTweaks() {
+  const [t] = useTweaks(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    document.documentElement.style.setProperty("--accent", "#5b9bff");
+  }, [t]);
+
+  return null;
+}
+
 const Hero = () => (
   <section className="hero">
     <div className="container">
+
       <div className="hero-logo-wrap">
         <div className="hero-orbit"></div>
         <div className="hero-orbit hero-orbit-2"></div>
-        <img src="assets/zeno-logo.png" className="hero-logo" alt="Zeno" />
+
+        <img
+          src="assets/zeno-logo.png"
+          className="hero-logo"
+          alt="Zeno"
+        />
       </div>
+
       <div className="hero-eyebrow">
         <span className="chip-dot"></span>
         <span>v1.2 · Minecraft 1.21.11</span>
       </div>
+
       <h1 className="h-display">
-        Built for<br/><span className="accent">precision.</span>
+        Built for<br />
+        <span className="accent">precision.</span>
       </h1>
-      <p>An open-source Minecraft client. Pure performance, zero clutter.</p>
+
+      <p>
+        An open-source Minecraft client.
+        Pure performance, zero clutter.
+      </p>
+
       <div className="hero-cta">
+
         <a href="downloads.html" className="btn btn-primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M12 4v12M6 12l6 6 6-6M4 20h16"/></svg>
           Download
         </a>
-        <a href="features.html" className="btn">Features</a>
+
+        <a href="features.html" className="btn">
+          Features
+        </a>
+
       </div>
+
     </div>
   </section>
 );
 
 const Stats = () => (
   <section className="container">
+
     <div className="stats glass">
+
       <div className="stat">
-        <div className="stat-num">62</div>
+        <div className="stat-num">27</div>
         <div className="stat-label">Working Modules</div>
       </div>
+
       <div className="stat">
         <div className="stat-num">Made For DonutSMP</div>
         <div className="stat-label">Undetected</div>
       </div>
+
       <div className="stat">
         <div className="stat-num">100%</div>
         <div className="stat-label">Open source</div>
       </div>
+
     </div>
+
   </section>
 );
 
 const App = () => (
   <>
+    <ZenoTweaks />
+
+    {typeof ParticleBG !== "undefined" && <ParticleBG />}
+
     <Nav active="home" />
+
     <main>
       <Hero />
       <Stats />
     </main>
+
     <Footer />
   </>
 );
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM
+  .createRoot(document.getElementById("root"))
+  .render(<App />);
+
 </script>
+
 </body>
 </html>
