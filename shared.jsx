@@ -6,10 +6,10 @@ const ZenoLogo = ({ size = 26 }) => (
 
 const Nav = ({ active }) => {
   const links = [
-    { href: "home.html", label: "Home", key: "home" },
-    { href: "features.html", label: "Features", key: "features" },
-    { href: "downloads.html", label: "Download", key: "downloads" },
-    { href: "credits.html", label: "Credits", key: "credits" },
+    { href: "./", label: "Home", key: "home" },
+    { href: "/features", label: "Features", key: "features" },
+    { href: "/downloads", label: "Download", key: "downloads" },
+    { href: "/credits", label: "Credits", key: "credits" },
   ];
   return (
     <nav className="nav">
@@ -39,16 +39,7 @@ const Nav = ({ active }) => {
   );
 };
 
-const Footer = () => (
-  <footer className="footer">
-    <div className="container">
-      <div className="footer-inner">
-        <span>© 2026 Zeno · Minecraft 1.21.11</span>
-        <span>Not affiliated with Mojang or Microsoft</span>
-      </div>
-    </div>
-  </footer>
-);
+
 
 // Particle network background — connected dots that react to mouse.
 // Reads window.__zenoTweaks for { density, energy, dotColor, lineColor, mouseColor }
@@ -306,7 +297,7 @@ const _removed = () => {
       const href = a.getAttribute("href") || "";
       if (!href || href.startsWith("#") || a.target === "_blank") return;
       // only same-origin internal pages
-      if (!/^[\w\-/.]+\.html(\?.*)?$/.test(href) && href !== ".") return;
+      if (!/^[\w\-\/.]+(\?.*)?$/.test(href) && href !== ".") return;
       e.preventDefault();
       const curtain = document.createElement("div");
       curtain.className = "page-curtain in";
