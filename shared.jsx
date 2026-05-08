@@ -6,10 +6,10 @@ const ZenoLogo = ({ size = 26 }) => (
 
 const Nav = ({ active }) => {
   const links = [
-    { href: "./", label: "Home", key: "home" },
-    { href: "/features", label: "Features", key: "features" },
-    { href: "/downloads", label: "Download", key: "downloads" },
-    { href: "/credits", label: "Credits", key: "credits" },
+    { href: "index.html", label: "Home", key: "home" },
+    { href: "features.html", label: "Features", key: "features" },
+    { href: "downloads.html", label: "Download", key: "downloads" },
+    { href: "credits.html", label: "Credits", key: "credits" },
 
   ];
   return (
