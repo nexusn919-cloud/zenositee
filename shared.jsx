@@ -6,7 +6,7 @@ const ZenoLogo = ({ size = 26 }) => (
 
 const Nav = ({ active }) => {
   const links = [
-    { href: "/", label: "Home", key: "home" },
+    { href: "index.html", label: "Home", key: "home" },
     { href: "features.html", label: "Features", key: "features" },
     { href: "downloads.html", label: "Download", key: "downloads" },
     { href: "credits.html", label: "Credits", key: "credits" },
@@ -14,7 +14,7 @@ const Nav = ({ active }) => {
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <a href="/" className="brand">
+        <a href="index.html" className="brand">
           <span className="brand-mark"><ZenoLogo /></span>
           <span>Zeno</span>
         </a>
