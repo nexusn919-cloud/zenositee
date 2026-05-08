@@ -14,7 +14,7 @@ const Nav = ({ active }) => {
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <a href="index.html" className="brand">
+        <a href="/" className="brand">
           <span className="brand-mark"><ZenoLogo /></span>
           <span>Zeno</span>
         </a>
